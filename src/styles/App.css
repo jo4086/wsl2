@@ -224,7 +224,7 @@ main.scrolled {
 
 /* ===Logo===*/
 .logo-wrapper {
-  background-color: lightskyblue;
+  /* background-color: lightskyblue; */
   transition: var(--logo-transition);
   transform-origin: top;
   transform: translateY();
@@ -238,25 +238,34 @@ main.scrolled {
 }
 .logo-wrapper::after {
   content: 'My Blog';
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: 'JetBrains Mono';
   font-style: italic;
   letter-spacing: 0.5rem;
-  color: white;
+  color: #030303;
   line-height: 2rem;
 
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
   white-space: nowrap;
 
-  background-color: red;
+  /* background-color: red; */
   /* padding: 1rem; */
 }
 
 .logo-wrapper.shrink {
-  transform: translateY(30);
+  /* transform: translateY(30px); */
+  /* font-size: 1rem; */
+
+  /* font-size: 2.5rem; */
+}
+
+.logo-wrapper.shrink::after {
+  font-size: 2.3rem;
+  letter-spacing: 0.2rem;
 }
 /* .logo-wrapper.shrink { */
 /* transform: scaleY(2);*/

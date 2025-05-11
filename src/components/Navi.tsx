@@ -50,7 +50,7 @@ export const Navbar = () => {
       ref={navbarRef}
       className={`${isScrolled ? 'scrolled' : ''} ${searchFocused ? 'search-focused}' : ''}`}
     >
-      <div className="logo-wrapper" style={{ height: `${logoHeight}px` }}>
+      <div className={`logo-wrapper ${isScrolled ? 'shrink' : ''}`} style={{ height: `${logoHeight}px` }}>
         {/*  <Logo
           viewBox={{ x: 0, y: 0, width: 300, height: 80 }}
           width={290}
