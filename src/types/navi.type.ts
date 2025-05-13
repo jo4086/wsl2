@@ -5,4 +5,5 @@ export interface BreadCrumbItem {
 
 export interface SnakeProps {
   items: BreadCrumbItem[]
+  className?: string
 }
