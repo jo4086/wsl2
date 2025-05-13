@@ -1,8 +1,13 @@
+import { Main } from './Main'
+import '../../styles/App.css'
+import '../../components/shared/Wrapper.scss'
+import cn from 'classnames'
+
 const Home = () => {
   return (
-    <>
-      <div>hello, world</div>
-    </>
+    <Main>
+      <div>hi</div>
+    </Main>
   )
 }
 
