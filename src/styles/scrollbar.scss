@@ -1,0 +1,36 @@
+.scrollbar {
+  overflow-y: auto;
+  padding-right: 8px;
+
+  /* Webkit */
+  &::-webkit-scrollbar {
+    width: 2rem;
+    /* 세로 스크롤바 */
+    height: 2rem;
+    /* 가로 스크롤바 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+
+  &::-webkit-scrollbar-thumb {
+    /* background-color: rgba(0, 100, 60, 0.3); */
+    background-color: red;
+    /* background-color: red; */
+    border: 2px solid transparent;
+    /* 내부 padding 느낌 */
+    background-clip: content-box;
+    border-radius: 6px;
+
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  scrollbar-width: thin;
+}

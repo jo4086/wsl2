@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "sass:list";
+
+@function build-transition($transition-map) {
+  $result: (
+  );
+
+@each $timing, $props in $transition-map {
+  @each $prop, $duration in $props {
+    $result: list.append($result, "#{$prop} #{$duration} #{$timing}", $separator: comma);
+  }
+}
+
+@return list.join($result, ", ");
+}
+
+@mixin apply-style($state, $component) {
+  $config: map.get($state, $component);
+
+  @each $prop, $value in $config {
+    @if $prop ==transition {
+      transition: build-transition($value);
+    }
+
+    @else {
+      #{$prop}: $value;
+    }
+  }
+}

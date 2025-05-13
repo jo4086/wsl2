@@ -1,0 +1,27 @@
+ /* @use "@styles/scss/forward.scss" as style; */
+ /* @use "sass:map"; */
+
+ $nav-blank-wd: 180px;
+ $nav-blank-side: 60px;
+ $nav-blank-mg: 0 3rem;
+
+ .logo {
+   width: $nav-blank-wd;
+   margin: $nav-blank-mg;
+   padding: $nav-blank-mg;
+   /* margin-right: $nav-blank-side; */
+ }
+
+ .nav-blank {
+   width: $nav-blank-wd;
+   margin: $nav-blank-mg;
+   padding: $nav-blank-mg;
+   background-color: palegreen;
+   height: 10px;
+   /* margin-left: $nav-blank-side; */
+ }
+
+ .search-input::placeholder {
+   font-style: italic;
+   letter-spacing: 0.1rem;
+ }
