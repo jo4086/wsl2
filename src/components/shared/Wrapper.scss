@@ -1,0 +1,21 @@
+@use "sass:map";
+/* @use '@scss/forward.scss' as style; */
+
+.wrapper {
+  @include style.fn-apply-style(style.$var-transition, main);
+  @include style.util-flex-row;
+
+  padding-top: map.get(style.$var-default, height);
+  position: relative;
+  top: 2;
+  width: 100%;
+  overflow: visible;
+  min-width: 600px;
+  width: 1200px;
+  height: 6000px;
+  background-color: cyan;
+}
+
+.wrapper.scrolled {
+  margin-top: 0;
+}

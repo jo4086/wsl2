@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom' // react-router 기준
 import type { SnakeProps } from '../types/navi.type'
 
-export const Snake = ({ items }: SnakeProps) => {
+export const Snake = ({ items, className }: SnakeProps) => {
   if (!items || !Array.isArray(items)) return null
   return (
-    <nav className="snake">
+    <nav className={className}>
       {items.map((item, idx) => {
         const isLast = idx === items.length - 1
         return (
