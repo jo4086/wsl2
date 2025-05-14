@@ -7,11 +7,13 @@
 
 @each $timing, $props in $transition-map {
   @each $prop, $duration in $props {
-    $result: list.append($result, "#{$prop} #{$duration} #{$timing}", $separator: comma);
+    // ✅ 문자열 한 줄로 묶되, 따옴표 없이 → string으로 append
+    $transition-str: unquote("#{$prop} #{$duration} #{$timing}");
+    $result: list.append($result, $transition-str, comma);
   }
 }
 
-@return list.join($result, ", ");
+@return $result;
 }
 
 @mixin apply-style($state, $component) {
