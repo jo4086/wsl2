@@ -1,51 +1,66 @@
 import { useEffect, useRef, useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-// import { Navigate } from './components/shared/Navigate'
-import Home from './domain/home/Home'
-// import Homie
+import { Routes, Route, useLocation } from 'react-router-dom'
+// import { Home } from '@domain/home'
+import { Content, Home } from './domain'
 import './global.css'
-import { Scrollbar } from './components/shared/Scrollbar'
-import { Navbar } from './components/Navi'
-import { Wrapper } from './components/shared/Wrapper'
+
+import { Wrapper } from '@components/wrapper'
+import { Navbar } from '@components/navbar'
+import { ScrollToTop } from '@components/utils'
 
 function App() {
+  const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
+  const lastScrollY = useRef(window.scrollY)
+  const lastTop = useRef(100)
+  const stickyRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    let lastScrollY = window.scrollY
+  const handleScroll = () => {
     const stopTop = 70
-    let lastTop = 1000
+    const currentY = window.scrollY
+    const isScrollingDown = currentY > lastScrollY.current
 
-    const handleScroll = () => {
-      const currentY = window.scrollY
-      const isScrollingDown = currentY > lastScrollY
-
-      if (isScrollingDown && currentY > 0) {
-        setIsScrolled(true)
-      } else if (!isScrollingDown && currentY < 30) {
-        setIsScrolled(false)
-      }
-
-      lastScrollY = currentY
+    if (isScrollingDown && currentY > 0) {
+      setIsScrolled(true)
+    } else if (!isScrollingDown && currentY < 30) {
+      setIsScrolled(false)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    const stickyTop = currentY < stopTop ? Math.max(100 - currentY, stopTop) : stopTop
+    if (stickyRef.current && stickyTop !== lastTop.current) {
+      stickyRef.current.style.top = `${stickyTop}px`
+      lastTop.current = stickyTop
+    }
+
+    lastScrollY.current = currentY
+  }
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      handleScroll()
+      window.addEventListener('scroll', handleScroll)
+    })
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // 라우트 변경 시 스크롤 상태 체크
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      handleScroll()
+    })
+  }, [location.pathname])
+
   return (
-    <div style={{ height: '3000px' }}>
-      <Scrollbar maxHeight="10px">
-        <Navbar isScrolled={isScrolled} />
-        <Wrapper isScrolled={isScrolled}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </Wrapper>
-      </Scrollbar>
+    <div style={{ height: '2000px' }}>
+      <ScrollToTop />
+      <Navbar isScrolled={isScrolled} />
+      <Wrapper isScrolled={isScrolled}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/content" element={<Content />} />
+        </Routes>
+      </Wrapper>
     </div>
   )
 }
