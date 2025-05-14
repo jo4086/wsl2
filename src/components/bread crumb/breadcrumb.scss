@@ -1,0 +1,44 @@
+.bread-crumb {
+  position: relative;
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  padding: 0.5rem 2rem;
+}
+
+.bread-crumb::after {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  content: '';
+  border-bottom: 1px solid red;
+}
+
+.bread-crumb-item {
+  display: flex;
+  position: relative;
+  width: auto;
+
+  margin: 0 3px;
+}
+
+.bread-crumb-item>* {
+  display: flex;
+  width: auto;
+  white-space: nowrap;
+}
+
+.bread-crumb-item::after {
+  right: 0px;
+  top: 0px;
+  font-weight: 800;
+  content: '-';
+  margin: 0 0.5rem;
+}
+
+.bread-crumb-item:last-child::after {
+  content: '';
+  margin: 0;
+}

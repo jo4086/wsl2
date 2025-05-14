@@ -1,0 +1,31 @@
+.search {
+  @include style.util-flex-row;
+  width: 250px;
+  gap: 10px;
+  padding: 5px 10px;
+
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  width: 100%;
+  height: 25px;
+  outline: none;
+  border: none;
+
+  background-color: transparent;
+  font-size: 1.2rem;
+}
+
+.search img {
+  width: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+}
+
+.search img:hover {
+  transform: scale(1.2);
+}
