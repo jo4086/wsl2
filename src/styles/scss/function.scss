@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:list";
+@use "sass:string";
 
 @function build-transition($transition-map) {
   $result: (
@@ -7,8 +8,8 @@
 
 @each $timing, $props in $transition-map {
   @each $prop, $duration in $props {
-    // ✅ 문자열 한 줄로 묶되, 따옴표 없이 → string으로 append
-    $transition-str: unquote("#{$prop} #{$duration} #{$timing}");
+
+    $transition-str: string.unquote("#{$prop} #{$duration} #{$timing}");
     $result: list.append($result, $transition-str, comma);
   }
 }
