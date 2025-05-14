@@ -45,11 +45,11 @@ function App() {
   }, [])
 
   // 라우트 변경 시 스크롤 상태 체크
-  useEffect(() => {
+  /*   useEffect(() => {
     requestAnimationFrame(() => {
       handleScroll()
     })
-  }, [location.pathname])
+  }, [location.pathname]) */
 
   return (
     <div style={{ height: '2000px' }}>
