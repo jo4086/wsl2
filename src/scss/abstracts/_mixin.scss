@@ -1,0 +1,46 @@
+@use 'sass:map';
+@use './_variables.scss' as *;
+
+@mixin shadow($x: 0, $y: 0, $typeKey: default, $colorKey: default) {
+  @if map.has-key($blur-map, $typeKey) {
+    @if map.has-key($color-map, $colorKey) {
+      $type: map.get($blur-map, $typeKey);
+      $color: map.get($color-map, $colorKey);
+
+      box-shadow: #{$x} #{$y} #{$type} #{$color};
+    }
+  }
+}
+
+@mixin typography($theme: light, $size: lg, $type: body1, $color: default) {
+  $type-map: map.get(map.get($typography, $size), $type);
+
+  font-size: map.get($type-map, size);
+  font-weight: map.get($type-map, weight);
+  letter-spacing: map.get($type-map, letter);
+
+  @if $color == default {
+    color: map.get($color-map, $theme);
+  } @else if map.has-key($color-map, $color) {
+    color: map.get($color-map, $color);
+  } @else {
+    color: $color;
+  }
+}
+
+$media-type: (
+  min: min-width,
+  max: max-width,
+);
+
+@mixin breakpoint($point, $type: min) {
+  @if map.has-key($breakpoints, $point) {
+    @media (#{map.get($media-type, $type)}: map.get($breakpoints, $point)) {
+      @content;
+    }
+  } @else {
+    @media (#{map.get($media-type, $type)}: $point) {
+      @content;
+    }
+  }
+}

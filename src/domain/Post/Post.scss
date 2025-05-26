@@ -1,0 +1,79 @@
+@use 'sass:map';
+
+.post-container {
+  width: 100%;
+  max-width: 1100px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem auto;
+  padding: 1rem;
+  gap: 16px;
+  border: 2px solid $lightblue-700;
+
+  & * {
+    display: flex;
+  }
+
+  & > .post-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+
+    & > div {
+      margin: 0 auto;
+      padding: 1rem;
+      width: inherit;
+      @include shadow(0, 0, input, gray-600);
+    }
+
+    & .title {
+      @include typography(light, lg, body2);
+      &:focus {
+        @include shadow(0, 0, input, gray-300);
+      }
+    }
+
+    & .icon-nav {
+      flex-direction: column;
+      gap: 6px;
+
+      & .icon-box {
+        position: relative;
+
+        &:first-child::after {
+          position: absolute;
+          width: 100%;
+          content: '';
+          bottom: -4px;
+          height: 0;
+          border-bottom: 1px solid $white-900;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+  & .icon-box {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    /* border: 1px solid green; */
+    & .post-icon {
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    & .icon-label {
+      border: 1px solid $white-900;
+      border-radius: 0.2rem;
+      font-size: 0.85rem;
+
+      /* @include typography(light, lg, annots); */
+      & > span {
+        padding-left: 0.5rem;
+      }
+    }
+  }
+}

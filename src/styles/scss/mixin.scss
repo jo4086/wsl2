@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use './map.scss' as *;
+
+@mixin break($key) {
+  @if not map.has-key($breakpoints, $key) {
+    @error "Invalid breakpoint: `#{$key}`. Available keys: #{map-keys($breakpoints)}";
+  }
+
+  $value: map.get($breakpoints, $key);
+
+  @media (min-width: $value) {
+    @content;
+  }
+
+}

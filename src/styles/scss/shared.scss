@@ -10,3 +10,24 @@
   align-items: center;
   flex-direction: column;
 }
+
+$justify-map: (
+  start: flex-start,
+  end: flex-end,
+  center: cetner,
+  between: space-between,
+  around: space-around,
+  evenly: space-evenly,
+);
+
+$align-map: (
+  normal: normal,
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline,
+  stretch: stretch,
+
+);
+
+@mixin flex($direction: row, $justify: start, $align: normal) {}

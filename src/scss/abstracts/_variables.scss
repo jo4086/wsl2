@@ -1,0 +1,177 @@
+@use 'sass:map';
+
+$breakpoints: (
+  xs: 360px,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1440px,
+);
+
+$gray-100: #404243;
+$gray-200: #3c3e4f;
+$gray-300: #383a3b;
+$gray-400: #343637;
+$gray-500: #303233;
+$gray-600: #2c2e3f;
+$gray-700: #282a2b;
+$gray-800: #242627;
+$gray-900: #202223;
+
+$white-100: #f9f9f9;
+$white-200: #f3f3f3;
+$white-300: #ededed;
+$white-400: #e8e8e8;
+$white-500: #e2e2e2;
+$white-600: #dcdcdc;
+$white-700: #d6d6d6;
+$white-800: #d0d0d0;
+$white-900: #c9c9c9;
+
+$red-100: oklch(0.95 0.2 25);
+$red-200: oklch(0.88 0.2 25);
+$red-300: oklch(0.81 0.2 25);
+$red-400: oklch(0.74 0.2 25);
+$red-500: oklch(0.67 0.2 25);
+$red-600: oklch(0.6 0.2 25);
+$red-700: oklch(0.53 0.2 25);
+$red-800: oklch(0.44 0.2 25);
+$red-900: oklch(0.35 0.2 25);
+
+$lightblue-100: oklch(0.96 0.049 219.65);
+$lightblue-200: oklch(0.93 0.049 219.65);
+$lightblue-300: oklch(0.9 0.049 219.65);
+$lightblue-400: oklch(0.875 0.049 219.65);
+$lightblue-500: oklch(0.856 0.049 219.65);
+$lightblue-600: oklch(0.8 0.049 219.65);
+$lightblue-700: oklch(0.72 0.049 219.65);
+$lightblue-800: oklch(0.64 0.049 219.65);
+$lightblue-900: oklch(0.56 0.049 219.65);
+
+$color-map: (
+  light: oklch(2% 0 0),
+  dark: #ffffff,
+
+  gray-100: #404243,
+  gray-200: #3c3e4f,
+  gray-300: #383a3b,
+  gray-400: #343637,
+  gray-500: #303233,
+  gray-600: #2c2e3f,
+  gray-700: #282a2b,
+  gray-800: #242627,
+  gray-900: #202223,
+
+  white-100: #f9f9f9,
+  white-200: #f3f3f3,
+  white-300: #ededed,
+  white-400: #e8e8e8,
+  white-500: #e2e2e2,
+  white-600: #dcdcdc,
+  white-700: #d6d6d6,
+  white-800: #d0d0d0,
+  white-900: #c9c9c9,
+
+  red-100: oklch(0.95 0.2 25),
+  red-200: oklch(0.88 0.2 25),
+  red-300: oklch(0.81 0.2 25),
+  red-400: oklch(0.74 0.2 25),
+  red-500: oklch(0.67 0.2 25),
+  red-600: oklch(0.6 0.2 25),
+  red-700: oklch(0.53 0.2 25),
+  red-800: oklch(0.44 0.2 25),
+  red-900: oklch(0.35 0.2 25),
+  lightblue-100: oklch(0.96 0.049 219.65),
+  lightblue-200: oklch(0.93 0.049 219.65),
+  lightblue-300: oklch(0.9 0.049 219.65),
+  lightblue-400: oklch(0.875 0.049 219.65),
+  lightblue-500: oklch(0.856 0.049 219.65),
+  lightblue-600: oklch(0.8 0.049 219.65),
+  lightblue-700: oklch(0.72 0.049 219.65),
+  lightblue-800: oklch(0.64 0.049 219.65),
+  lightblue-900: oklch(0.56 0.049 219.65),
+);
+
+$blur-map: (
+  default: 0px 0px,
+  border: 2px 1px,
+  border-hover: 4px 1px,
+  input: 1px 0px,
+  input-hover: 2px 1px,
+  card: 4px 1px,
+  card-hover: 4px 2px,
+  modal: 16px 4px,
+);
+
+$typography: (
+  sm: (
+    h1: (
+      size: 1.5rem,
+      weight: 700,
+      letter: -0.01em,
+    ),
+    h2: (
+      size: 1.25rem,
+      weight: 600,
+      letter: -0.005em,
+    ),
+    body: (
+      size: 1rem,
+      weight: 400,
+      letter: 0,
+    ),
+    button: (
+      size: 0.875rem,
+      weight: 600,
+      letter: 0.025em,
+    ),
+    annots: (
+      size: 0.75rem,
+      weight: 400,
+      letter: 0.01em,
+    ),
+    navbar: (
+      size: 0.7rem,
+      weight: 400,
+      letter: 0.01em,
+    ),
+  ),
+  lg: (
+    h1: (
+      size: 2rem,
+      weight: 700,
+      letter: -0.015em,
+    ),
+    h2: (
+      size: 1.75rem,
+      weight: 600,
+      letter: -0.01em,
+    ),
+    body1: (
+      size: 1.125rem,
+      weight: 400,
+      letter: 0,
+    ),
+    body2: (
+      size: 1rem,
+      weight: 400,
+      letter: 0,
+    ),
+    button: (
+      size: 1rem,
+      weight: 600,
+      letter: 0.025em,
+    ),
+    annots: (
+      size: 0.875rem,
+      weight: 400,
+      letter: 0.01em,
+    ),
+    navbar: (
+      size: 1rem,
+      weight: 400,
+      letter: 0.01em,
+    ),
+  ),
+);

@@ -1,0 +1,179 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+$theme-mode: dark !default;
+
+$dark: (
+  bg-0: #000,
+  bg-1: #111,
+  bg-2: #222,
+  bg-3: #333,
+  bg-4: #444,
+
+  border-bg-0: #777,
+  border-bg-1: #888,
+  border-bg-2: #aaa,
+  border-bg-3: #bbb,
+  border-bg-4: #ccc,
+
+  text-1: #fff,
+  text-2: #eee,
+  text-3: #ddd,
+);
+
+$light: (
+  bg-1: #ddd,
+  bg-2: #eee,
+  bg-3: #fff,
+
+  white: #fff,
+  border-white: #ddd,
+
+  border-bg-1: #d0d0d0,
+  border-bg-2: #ddd,
+  border-bg-3: #f0f0f0,
+
+  text-1: #111,
+  text-2: #222,
+  text-3: #333,
+);
+
+$side-map: (
+  none: none,
+  all: border,
+  top: border-top,
+  bottom: border-bottom,
+  left: border-left,
+  right: border-right,
+  vertical: (
+    border-top,
+    border-bottom,
+  ),
+  horizontal: (
+    border-left,
+    border-right,
+  ),
+);
+
+@function theme($key) {
+  @if $theme-mode ==light {
+    @return map.get($light, $key);
+  } @else {
+    @return map.get($dark, $key);
+  }
+}
+
+@mixin dark($bg, $text: text-1, $side: all) {
+  html[data-theme='dark'] & {
+    $bg-color: map.get($dark, $bg);
+    $border-key: border-#{$bg}; // 동적으로 키 조합
+    $border-color: map.get($dark, $border-key);
+    background-color: $bg-color;
+    color: map.get($dark, $text);
+
+    $border-prop: map.get($side-map, $side);
+
+    @if $border-prop ==none {
+      border: none;
+    } @else if meta.type-of($border-prop) == 'list' {
+      @each $prop in $border-prop {
+        #{$prop}: 1px solid $border-color;
+      }
+    } @else if $border-prop !=null {
+      #{$border-prop}: 1px solid $border-color;
+    } @else {
+      @warn "Invalid side `#{$side}` passed to dark mixin.";
+    }
+
+    @content;
+  }
+}
+
+@mixin light($bg, $text: text-1, $side: all) {
+  html[data-theme='light'] & {
+    $bg-color: map.get($light, $bg);
+    $border-key: border-#{$bg}; // 동적으로 키 조합
+    $border-color: map.get($light, $border-key);
+
+    background-color: $bg-color;
+    color: map.get($light, $text);
+
+    $border-prop: map.get($side-map, $side);
+
+    @if $border-prop ==none {
+      border: none;
+    } @else if meta.type-of($border-prop) == 'list' {
+      @each $prop in $border-prop {
+        #{$prop}: 1px solid $border-color;
+      }
+    } @else if $border-prop !=null {
+      #{$border-prop}: 1px solid $border-color;
+    } @else {
+      @warn "Invalid side `#{$side}` passed to dark mixin.";
+    }
+
+    @content;
+  }
+}
+
+@mixin dark-inner($bg, $text: text-1, $side: all) {
+  $bg-color: map.get($dark, $bg);
+  $border-key: border-#{$bg};
+  $border-color: map.get($dark, $border-key);
+  background-color: $bg-color;
+  color: map.get($dark, $text);
+
+  $border-prop: map.get($side-map, $side);
+
+  @if $border-prop ==none {
+    border: none;
+  } @else if meta.type-of($border-prop) == 'list' {
+    @each $prop in $border-prop {
+      #{$prop}: 1px solid $border-color;
+    }
+  } @else if $border-prop !=null {
+    #{$border-prop}: 1px solid $border-color;
+  }
+
+  @content;
+}
+
+@mixin light-inner($bg, $text: text-1, $side: all) {
+  $bg-color: map.get($light, $bg);
+  $border-key: border-#{$bg};
+  $border-color: map.get($light, $border-key);
+  background-color: $bg-color;
+  color: map.get($light, $text);
+
+  $border-prop: map.get($side-map, $side);
+
+  @if $border-prop ==none {
+    border: none;
+  } @else if meta.type-of($border-prop) == 'list' {
+    @each $prop in $border-prop {
+      #{$prop}: 1px solid $border-color;
+    }
+  } @else if $border-prop !=null {
+    #{$border-prop}: 1px solid $border-color;
+  }
+
+  @content;
+}
+
+/* @mixin light-bg($key) {
+  html.light & {
+    background-color: map.get($light, $key);
+  }
+}
+
+@mixin dark-text($key) {
+  html.dark & {
+    color: map.get($dark, $key);
+  }
+}
+
+@mixin light-text($key) {
+  html.light & {
+    color: map.get($light, $key);
+  }
+} */

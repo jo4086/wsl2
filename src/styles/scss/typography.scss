@@ -1,0 +1,81 @@
+@use 'sass:map';
+
+$typography: (
+  sm: (
+    h1: (
+      size: 1.5rem,
+      weight: 700,
+      letter: -0.01em,
+    ),
+    h2: (
+      size: 1.25rem,
+      weight: 600,
+      letter: -0.005em,
+    ),
+    body: (
+      size: 1rem,
+      weight: 400,
+      letter: 0,
+    ),
+    button: (
+      size: 0.875rem,
+      weight: 600,
+      letter: 0.025em,
+    ),
+    annots: (
+      size: 0.75rem,
+      weight: 400,
+      letter: 0.01em,
+    ),
+  ),
+  lg: (
+    h1: (
+      size: 2rem,
+      weight: 700,
+      letter: -0.015em,
+    ),
+    h2: (
+      size: 1.75rem,
+      weight: 600,
+      letter: -0.01em,
+    ),
+    body: (
+      size: 1.125rem,
+      weight: 400,
+      letter: 0,
+    ),
+    button: (
+      size: 1rem,
+      weight: 600,
+      letter: 0.025em,
+    ),
+    annots: (
+      size: 0.875rem,
+      weight: 400,
+      letter: 0.01em,
+    ),
+  ),
+);
+
+@mixin typography($breakpoint, $type) {
+  $style: map.get(map.get($typography, $breakpoint), $type);
+  font-size: map.get($style, size);
+  font-weight: map.get($style, weight);
+  letter-spacing: map.get($style, letter);
+}
+
+@mixin classes($breakpoint) {
+  @if map.has-key($typography, $breakpoint) {
+    $styles: map.get($typography, $breakpoint);
+
+    @each $type, $style in $styles {
+      .#{$type} {
+        font-size: map.get($style, size);
+        font-weight: map.get($style, weight);
+        letter-spacing: map.get($style, letter);
+      }
+    }
+  } @else {
+    @warn "No styles found for breakpoint `#{$breakpoint}` in $typography.";
+  }
+}

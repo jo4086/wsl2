@@ -2,6 +2,29 @@
 @use './function.scss' as fn;
 @use './variable.scss' as var;
 @use './shared.scss' as util;
+@use './theme.scss' as theme;
+@use './typography.scss' as typo;
+
+:root {
+  --gutter: 10px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --gutter: 20px;
+  }
+}
+
+@media (min-width: 800px) {
+  :root {
+    --gutter: 30px;
+  }
+}
+
+
+div {
+  padding: var(--gutter);
+}
 
 .wrapper {
   @include fn.apply-style(var.$transition, main);
@@ -16,6 +39,8 @@
   width: 1200px;
   height: 6000px;
   background-color: cyan;
+  position: relative;
+  top: 2;
 }
 
 .wrapper.scrolled {

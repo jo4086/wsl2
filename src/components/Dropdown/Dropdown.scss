@@ -1,0 +1,64 @@
+/**
+ * class
+ * - dropdown-root
+ * - dropdown-open, dropdow-close
+ * - dropdown-button-root
+ *   - dropdown-selected-item
+ * - dropdown-menu-root
+ *   - dropdown-menu-item
+*/
+
+.dropdown-root {
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  height: 2.5rem;
+  padding: 0.5rem 0;
+  background-color: white;
+  color: black;
+  z-index: 1000;
+
+  border-radius: 4px;
+
+  width: 180px;
+
+  & * {
+    background-color: inherit;
+    color: inherit;
+    border-radius: 4px;
+  }
+
+  & .dropdown-button-root {
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .dropdown-menu-root {
+    flex-direction: column;
+    position: absolute;
+    top: 2.6rem;
+    border-radius: 4px;
+
+    & .dropdown-menu-item {
+      /* height: 50px; */
+      padding: 0.5rem 0;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: lightblue;
+      }
+    }
+  }
+
+  & .dropdown-menu-root,
+  & .dropdown-button-root {
+    width: inherit;
+    font-size: 1rem;
+
+    & * {
+      background-color: inherit;
+    }
+  }
+}

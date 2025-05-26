@@ -1,0 +1,21 @@
+@use 'sass:map';
+
+.text-area {
+  display: flex;
+  /* padding: 40px; */
+  width: 400px;
+  border-radius: 4px;
+  padding: 16px;
+  outline: none;
+  border: none;
+
+  /* box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3); */
+  &:focus {
+    outline: none;
+    /* border: none; */
+  }
+
+  &.--full-width {
+    width: 100%;
+  }
+}

@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "sass:math";
+
 $transition: (
   nav: (transition: (ease: (opacity: 0.4s,
         height: 0.4s,
@@ -11,10 +14,45 @@ $transition: (
       all: 0.4s))
 );
 
+
+
 $default: (
   height: 80px,
 );
 
 $scrolled: (
   height: 60px,
+);
+
+$min: (
+  width: 400px,
+  space: 300px,
+  /* space: #{calc((100% - 800px) / 2)}, */
+  /* space: math.unquote(calc((100% - 800px) / 2)), */
+);
+
+$max: (
+  width: 1200px,
+  space: 400px,
+  /* space: #{calc((100% - 1200px) / 2)}, */
+  /* space: calc((100% - 1200px) / 2), */
+);
+
+$space: (
+  width: calc((100% - 1200px) / 2),
+  max-width: 400px,
+  min-width: 200px,
+  padding: 0 20px,
+  /* min-width: 300px */
+);
+
+$dark: (
+  bg: (primary: #333,
+    secondary: #666,
+    tertiary: #888,
+  ),
+  text: (primary: #fff,
+    secondary: #eee,
+    tertiary: #ddd,
+  ),
 );

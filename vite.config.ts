@@ -24,7 +24,13 @@ export default defineConfig({
       scss: {
         // api: 'legacy',
         // includePaths: ['src'],
-        additionalData: `@use "@styles/scss/forward.scss" as style;`,
+        /*    additionalData: `
+          @use "@styles/scss/forward.scss" as style;
+          @use "@styles/scss/map.scss" as *;
+          @use "@styles/scss/mixin.scss" as *;`, */
+        additionalData: `
+@use "@styles/scss/forward.scss" as style;
+@use "@/style.scss" as *;`,
       },
     },
   },

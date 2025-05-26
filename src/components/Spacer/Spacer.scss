@@ -1,0 +1,8 @@
+@use 'sass:map';
+
+.spacer {
+  /* background-color: white; */
+  min-width: map.get(style.$var-space, width);
+  /* @include style.fn-apply-space(style.$var-space); */
+  /* height: 1000px; */
+}

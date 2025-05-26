@@ -1,0 +1,230 @@
+@use 'sass:map';
+@use 'sass:list';
+
+$transition: (
+  navbar: (
+    ease: (
+      height: 0.4s,
+    ),
+  ),
+  navbar-bg: (
+    ease: (
+      opacity: 0.4s,
+      background-color: 0.4s,
+    ),
+  ),
+  theme-toggle: (
+    ease: (
+      transform: 0.2s,
+      color: 0.6s,
+    ),
+  ),
+  navbar-content: (
+    ease: (
+      box-shadow: 0.3s,
+      padding: 0.4s,
+      background-color: 0.4s,
+      border: 0.4s,
+    ),
+  ),
+);
+
+$property-map: (opacity, background-color, height, transform, color, box-shadow, padding, border);
+
+@mixin transition($tagKey) {
+  @if map.has-key($transition, $tagKey) {
+    $ease-map: map.get($transition, $tagKey);
+
+    @if map.has-key($ease-map, ease) {
+      $props-map: map.get($ease-map, ease);
+      $transitions: ();
+
+      @each $prop in $property-map {
+        @if map.has-key($props-map, $prop) {
+          $duration: map.get($props-map, $prop);
+          $transitions: list.append($transitions, '#{$prop} #{$duration} ease', comma);
+        }
+      }
+
+      @if list.length($transitions) >0 {
+        transition: #{$transitions};
+      }
+    }
+  }
+}
+
+.navbar {
+  @include transition(navbar);
+  @include style.util-flex-row;
+
+  background-color: transparent;
+
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+  min-width: fit-content;
+
+  height: map.get(style.$var-default, height);
+  box-shadow: none;
+
+  & > .navbar-bg {
+    @include transition(navbar-bg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+  }
+
+  &.scrolled {
+    height: map.get(style.$var-scrolled, height);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    & > .navbar-bg {
+      opacity: 0.5;
+    }
+
+    & > .navbar-content {
+      padding: 3px 0;
+    }
+  }
+
+  /* 
+  &:not(.scrolled) {
+    transition-delay: 400ms;
+    & > .navbar-bg {
+      transition-delay: 400ms;
+    }
+  } */
+
+  &.scrolled:hover,
+  &.scrolled.search-focused {
+    & > .navbar-bg {
+      opacity: 1;
+    }
+  }
+
+  & > .navbar-content {
+    @include style.util-flex-row;
+    @include transition(navbar-content);
+
+    width: calc(100% - 640px);
+    max-width: 1280px;
+
+    margin: 0;
+    padding: 6px 0;
+    border-radius: 3px;
+
+    & .bread-crumb {
+      flex: 3;
+    }
+
+    & .right {
+      @include style.util-flex-row;
+      flex: 1;
+
+      & .search {
+        width: 250px;
+        border: none;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.4);
+      }
+
+      & .theme-toggle {
+        @include transition(theme-toggle);
+        width: fit-content;
+        transform: scale(1.5);
+        margin: 0 20px;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.6);
+        }
+      }
+    }
+  }
+
+  & > .logo {
+    @include style.util-flex-row;
+
+    /* @include style.fn-apply-space(style.$var-space); */
+    padding: 0;
+    margin: 0;
+    width: 320px;
+
+    left: 0;
+    font-size: 2.5rem;
+    font-style: italic;
+    font-family: 'JetBrains Mono';
+    white-space: nowrap;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  & > .nav-blank {
+    /* @include style.fn-apply-space(style.$var-space); */
+    width: 320px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  @include style.theme-dark(bg-0, text-1, bottom) {
+    @include typography(dark, lg, navbar);
+    background-color: transparent;
+
+    & > .navbar-bg {
+      /* background-color: #404143; */
+      background-color: #202223;
+    }
+
+    & > .navbar-content {
+      @include style.theme-dark-inner(bg-2, text-2, none) {
+        background-color: #202426;
+        border: 1px solid rgba(180, 180, 180, 0.5);
+        box-shadow: 0px 0px 2px 1px rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    &.scrolled {
+      & > .navbar-content {
+        border: 1px solid transparent;
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+
+  @include style.theme-light(white, text-1, bottom) {
+    @include typography(light, lg, navbar, default);
+    background-color: transparent;
+
+    & > .navbar-bg {
+      background-color: white;
+    }
+
+    & > .navbar-content {
+      background-color: $lightblue-500;
+      border: 1px solid map.get($color-map, lightblue-600);
+      @include shadow(0, 0, border, lightblue-700);
+
+      &:hover {
+        @include shadow(0, 0, border-hover, lightblue-800);
+      }
+    }
+
+    &.scrolled {
+      & > .navbar-content {
+        border: 1px solid transparent;
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+}

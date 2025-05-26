@@ -1,0 +1,14 @@
+.side {
+  width: 320px;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* height: ; */
+}
+
+.center {
+  /* width: 1280px; */
+  width: calc((100% - 640px));
+  margin: 0 auto;
+  display: flex;
+
+  background-color: rgba(0, 120, 180, 0.1);
+}
