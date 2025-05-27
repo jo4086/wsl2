@@ -1,8 +1,8 @@
 import './Post.scss'
 import type { Commonprops } from '@/components/types'
 import cn from 'classnames'
-import { Container, TextArea, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@/components'
-import { useState } from 'react'
+import { Container, TextArea, Dropdown } from '@/components'
+import { useState, type ReactNode } from 'react'
 
 interface ToolBase {
   icon?: string
@@ -32,6 +32,7 @@ const tools: ToolItem[] = []
 type IconMapProps = {
   label?: string
   key?: string
+  icon?: ReactNode
   class?: string
 }[]
 
@@ -43,7 +44,20 @@ export const Post = () => {
     { label: '코드블록', class: 'ri-text-block' },
     { label: '외부링크', class: 'ri-link-m' },
   ]
-  const textIconMap: IconMapProps = [{ label: 'table' }, { label: 'ol' }, { label: 'ul' }]
+  const textIconMap: IconMapProps = [
+    { label: 'table' },
+    { label: 'ol' },
+    { label: 'ul' },
+    { label: 'index4' },
+    { label: 'table', icon: <i className="ri-grid-line"></i> },
+    { label: 'ol', icon: <i className="ri-list-ordered"></i> },
+    { label: 'table', icon: <i className="ri-grid-line"></i> },
+    { label: 'ol', icon: <i className="ri-list-ordered"></i> },
+    { label: 'table', icon: <i className="ri-grid-line"></i> },
+    { label: 'ol', icon: <i className="ri-list-ordered"></i> },
+    { label: 'table', icon: <i className="ri-grid-line"></i> },
+    { label: 'ol', icon: <i className="ri-list-ordered"></i> },
+  ]
   const maps = [
     { label: 'table', icon: <i className="ri-grid-line"></i> },
     { label: 'ol', icon: <i className="ri-list-ordered"></i> },
@@ -60,7 +74,7 @@ export const Post = () => {
         <IconNav>
           <IconBox className="main-group">
             {iconMap.map((item) => (
-              <i key={item.label} className={`post-icon icon-label ${item.class}`}>
+              <i tabIndex={0} key={item.label} className={`post-icon icon-label ${item.class}`}>
                 <span>{item.label}</span>
               </i>
             ))}

@@ -1,0 +1,17 @@
+.scroll-container {
+  position: relative;
+  overflow-y: hidden;
+  max-height: 100px;
+  padding-right: 8px; // 스크롤바 영역 확보
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-scrollbar-thumb {
+  position: absolute;
+  right: 2px;
+  width: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  pointer-events: none;
+}

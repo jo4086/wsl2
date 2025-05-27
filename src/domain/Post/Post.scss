@@ -37,7 +37,7 @@
 
     & .icon-nav {
       flex-direction: column;
-      gap: 6px;
+      gap: 10px;
 
       & .icon-box {
         position: relative;
@@ -46,7 +46,7 @@
           position: absolute;
           width: 100%;
           content: '';
-          bottom: -4px;
+          bottom: -5px;
           height: 0;
           border-bottom: 1px solid $white-900;
           left: 50%;

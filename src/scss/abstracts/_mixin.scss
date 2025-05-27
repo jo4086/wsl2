@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:list';
 @use './_variables.scss' as *;
 
 @mixin shadow($x: 0, $y: 0, $typeKey: default, $colorKey: default) {
@@ -42,5 +43,20 @@ $media-type: (
     @media (#{map.get($media-type, $type)}: $point) {
       @content;
     }
+  }
+}
+
+@mixin transition($map, $key) {
+  @if map.has-key($map, $key) {
+    $target: map.get($map, $key);
+    $ease-map: map.get($target, ease);
+
+    $transitions: ();
+
+    @each $prop, $duration in $ease-map {
+      $transitions: list.append($transitions, #{$prop} #{$duration} ease, comma);
+    }
+
+    transition: $transitions;
   }
 }

@@ -19,9 +19,11 @@ export * from './Layout'
 // selectors
 // export * from './selectors'
 
+// 's'
 export * as SearchBox from './SearchBox'
 export * as Spacer from './Spacer'
 export * as StickyBox from './StickyBox'
+export * from './Scrollbar'
 
 export * from './TextArea'
 

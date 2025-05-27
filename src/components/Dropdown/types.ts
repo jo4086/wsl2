@@ -2,7 +2,7 @@ import type { ReactNode, HTMLAttributes } from 'react'
 import type { ReactProps } from '../types'
 
 export interface SlotItem {
-  label: string
+  label?: string
   /**
    * ReactNode 타입의 아이콘 컴포넌트입니다.
    * e.g ) <CustomIcon />
@@ -14,7 +14,6 @@ export interface SlotItem {
    * ReactNode가 아닌 이미지 URL을 사용할 경우 이 속성을 사용하세요.
    * */
   src?: string
-  // value?: string | number
 }
 
 export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -26,5 +25,7 @@ export interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onC
 export interface DropdownItemProps extends ReactProps<HTMLLIElement> {
   item: SlotItem
   isSelected: boolean
+  isPseudoHovered: boolean
+  refCallback?: (el: HTMLLIElement | null) => void
   onClick: () => void
 }
