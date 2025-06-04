@@ -1,0 +1,12 @@
+#item,
+#target {
+  top: calc(anchor(bottom));
+  left: anchor(center);
+  transform: translateX(-50%);
+}
+
+#menu-items {
+  bottom: calc(anchor(bottom));
+  left: anchor(center);
+  translate: -50% 0;
+}

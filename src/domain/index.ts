@@ -1,3 +1,3 @@
 export * from './Home'
-export * from './content'
+export * from './Content'
 export * from './Post'

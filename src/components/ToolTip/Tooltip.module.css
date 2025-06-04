@@ -1,0 +1,70 @@
+.tooltipWrapper {
+  /* position: relative; */
+  /* width: 0; */
+  /* height: 0; */
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* position: relative; */
+  /* display: inherit; */
+  /* height: inherit; */
+  /* justify-content: inherit; */
+  /* align-items: inherit; */
+  /* position: absolute; */
+
+  .tooltipDesc {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    bottom: 100%;
+    /* top: 100%; */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease 0.2s;
+    display: flex;
+    padding: 8px;
+    background-color: rgba(60, 60, 70, 0.8);
+    color: white;
+    white-space: nowrap;
+  }
+
+  &:hover > .tooltipDesc {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:has(.tooltipWrapper:hover) > .tooltipDesc {
+    opacity: 0 !important;
+    transition-delay: 0s !important;
+  }
+
+  /*   &:not(:hover) > .tooltipDesc {
+    transition-delay: 0s !important;
+  } */
+}
+/* .tooltip-wrapper {
+  position: relative;
+
+  & .tooltip-desc {
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease 0.2s;
+
+    display: flex;
+    padding: 8px;
+    background-color: rgba(60, 60, 70, 0.8);
+    flex-wrap: nowrap;
+    color: white;
+  }
+
+  &:first-child:hover .tooltip-desc {
+    opacity: 1;
+  }
+  &:first-child:not(:hover) .tooltip-desc {
+    transition-delay: 0s !important;
+  }
+} */
